@@ -1,0 +1,32 @@
+* {
+  font: "SF Pro Text";
+  font-size: 14px;
+}
+
+#window {
+  background-color: rgba(24, 20, 9, 0.8);
+  border-radius: 10;
+}
+
+#outer-box {
+  border-radius: 10;
+  border: 1px solid rgba(118, 141, 35, 0.7);
+}
+
+#input {
+  border-radius: 10;
+  margin: 1px;
+  background-color: rgba(0, 0, 0, 0.0);
+}
+
+#scroll {
+  margin: 5px;
+}
+
+#entry:focus {
+  background-color: rgba(118, 141, 35, 0.8);
+}
+
+#entry:selected {
+  background-color: rgba(118, 141, 35, 0.8);
+}

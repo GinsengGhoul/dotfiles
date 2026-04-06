@@ -1,0 +1,16 @@
+{
+  "chadtree": { "branch": "chad", "commit": "6c37557462f9a8b51d0fc873c63863672a45cf5a" },
+  "conform.nvim": { "branch": "master", "commit": "086a40dc7ed8242c03be9f47fbcee68699cc2395" },
+  "coq.artifacts": { "branch": "artifacts", "commit": "ef5f21d638ccc456cfa5b8d0ab37093cefe48c8b" },
+  "coq.thirdparty": { "branch": "3p", "commit": "2bd969a2bcd2624f9c260b1000957c7e665e308e" },
+  "coq_nvim": { "branch": "coq", "commit": "d939a34ceb2b57d2937890337a4aa75eb55e18a8" },
+  "hlargs.nvim": { "branch": "main", "commit": "0b29317c944fb1f76503ce4540d6dceffbb5ccd2" },
+  "indent-blankline.nvim": { "branch": "master", "commit": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03" },
+  "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
+  "monokai.nvim": { "branch": "master", "commit": "b8bd44d5796503173627d7a1fc51f77ec3a08a63" },
+  "nvim-lspconfig": { "branch": "master", "commit": "a776085e04f7b15d0b59fae2244df07d98360ab4" },
+  "nvim-treesitter": { "branch": "main", "commit": "4916d6592ede8c07973490d9322f187e07dfefac" },
+  "nvim-treesitter-cpp-tools": { "branch": "main", "commit": "a460af37e65697d21c3dd688d2049ff9354905b3" },
+  "rainbow-delimiters.nvim": { "branch": "master", "commit": "aab6caaffd79b8def22ec4320a5344f7c42f58d2" },
+  "transparent.nvim": { "branch": "main", "commit": "8ac59883de84e9cd1850ea25cf087031c5ba7d54" }
+}

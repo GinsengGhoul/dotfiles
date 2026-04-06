@@ -1,0 +1,97 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 25, // Waybar height (to be removed for auto height)
+    "spacing": 10, // Gaps between modules (4px)
+                   // Choose the order of the modules
+    "modules-left": [
+      "hyprland/workspaces",
+    "hyprland/submap",
+    ],
+    "modules-right": [
+    "custom/keyboard",
+    "pulseaudio",
+    "battery",
+    "tray",
+    "clock",
+    ],
+
+    "custom/keyboard": {
+      "format": "{icon}",
+      "format-icons": "󰌌",
+      "on-click": "~/.config/waybar/keyb.sh"
+    },
+
+    "keyboard-state": {
+      "numlock": true,
+      "capslock": true,
+      "format": "{name} {icon}",
+      "format-icons": {
+        "locked": "",
+        "unlocked": ""
+      }
+    },
+    "hyprland/workspaces": {
+     "format": "{icon}",
+     "on-scroll-up": "hyprctl dispatch workspace e-1",
+     "on-scroll-down": "hyprctl dispatch workspace e+1"
+	},
+    "hyprland/submap": {
+      "format": "<span style=\"italic\">{}</span>",
+      },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
+    },
+    "tray": {
+      // "icon-size": 21,
+      "spacing": 10
+    },
+    "clock": {
+      // "timezone": "America/New_York",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format": "{:%a %b %e, %I:%M:%S%p}",
+      "interval": 1,
+      "on-click" : "gnome-calendar"
+    },
+    "battery": {
+      "states": {
+        // "good": 95,
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "{capacity}% {icon}",
+      "format-full": "{capacity}% {icon}",
+      "format-charging": "{capacity}% 󰂄",
+      "format-plugged": "{capacity}% ",
+      "format-alt": "{time} {icon}",
+      // "format-good": "", // An empty format will hide the module
+      // "format-full": "",
+      "format-icons": ["󰁺", "󰁼", "󰁾", "󰂁", "󰁹"],
+      "on-scroll-up": "${HOME}/.config/hypr/scripts/brightnessctl.sh up 28",
+      "on-scroll-down": "${HOME}/.config/hypr/scripts/brightnessctl.sh down 25",
+    },
+    "pulseaudio": {
+      "scroll-step": 2, // %, can be a float
+      "format": "{volume}% {icon} {format_source}",
+      "format-bluetooth": "{volume}% {icon} {format_source}",
+      "format-bluetooth-muted": "󰂲 {icon} {format_source}",
+      "format-muted": "󰝟 {format_source}",
+      "format-source": "{volume}% ",
+      "format-source-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "󰏳",
+        "headset": "󰋎",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+      },
+      "on-click": "pavucontrol"
+    },
+}

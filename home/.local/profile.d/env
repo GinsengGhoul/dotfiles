@@ -1,0 +1,9 @@
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=gasp"
+export TERMINAL="/usr/bin/alacritty"
+
+_ARCH="$(gcc -### -E - -march=native 2>&1 | grep 'march' | sed -n 2p | sed 's/.*\"-march=//;s/".*//')"
+export RUSTFLAGS="-C linker=clang -C linker-plugin-lto -C link-arg=-fuse-ld=lld -C target-cpu=${_ARCH} -C opt-level=3 -C strip=debuginfo -C codegen-units=1"
+
+export ANV_DEBUG="video-decode,video-encode"
+
+export PATH="${HOME}/.cargo/bin:${PATH}"

@@ -1,0 +1,27 @@
+general.import = [
+  "~/.config/alacritty/Monokai.toml",
+  "~/.config/alacritty/env.toml",
+]
+
+[font]
+size = 10.0
+#normal = { family = "Px437IBMVGA9x14 Nerd Font", style = "SemiBold" }
+#normal = { family = "SF Mono", style = "SemiBold" }
+normal = { family = "BlexMono Nerd Font", style = "SemiBold" }
+
+[cursor]
+style = { shape = "Underline", blinking = "Always" }
+
+[window]
+dynamic_title = true
+opacity = 0.7
+decorations_theme_variant = "Dark"
+title = "Alacritty"
+  
+[window.dimensions]
+columns = 80
+lines = 24
+
+[window.padding]
+x = 5
+y = 5
