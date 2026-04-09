@@ -11,6 +11,16 @@ return {
 			lua = { "stylua" },
 			python = { "autopep8" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
+			c = { "clang-format" },
+			cpp = { "clang-format" },
+			java = { "clang-format" },
+			javascript = { "clang-format" },
+			json = { "clang-format" },
+			objc = { "clang-format" },
+			proto = { "clang-format" },
+			cs = { "clang-format" },
+			sh = { "shfmt" },
+			["_"] = { "gg_fallback" },
 		},
 		-- Set default options
 		default_format_opts = {
@@ -20,8 +30,29 @@ return {
 		format_on_save = { timeout_ms = 500 },
 		-- Customize formatters
 		formatters = {
+			clang_format = {
+				prepend_args = {
+					"-style={BasedOnStyle: Mozilla, ColumnLimit: 0}",
+				},
+			},
 			shfmt = {
-				append_args = { "-i", "2" },
+				prepend_args = { "--posix", "--simplify", "--indent", "2" },
+			},
+			gg_fallback = {
+				format = function(self, ctx, lines, callback)
+					-- Save cursor position
+					local view = vim.fn.winsaveview()
+
+					-- Apply formatting using Neovim's built-in formatexpr
+					vim.api.nvim_buf_set_lines(ctx.buf, 0, -1, false, lines)
+					vim.cmd("normal! gg=G")
+					local formatted_lines = vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)
+
+					-- Restore cursor position
+					vim.fn.winrestview(view)
+
+					callback(nil, formatted_lines)
+				end,
 			},
 		},
 	},
