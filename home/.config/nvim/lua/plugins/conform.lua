@@ -1,5 +1,11 @@
+local function hasExt()
+  local name = vim.api.nvim_buf_get_name(0)
+  return name:match("%.[^./\\]+$") ~= nil
+end
+
 return {
 	"stevearc/conform.nvim",
+	enabled = hasExt(),
 	event = { "BufWritePre" },
 	cmd = { "ConformInfo" },
 	-- This will provide type hinting with LuaLS
@@ -36,7 +42,7 @@ return {
 				},
 			},
 			shfmt = {
-				prepend_args = { "--posix", "--simplify", "--indent", "2" },
+				prepend_args = { "--simplify", "--indent", "2" },
 			},
 			gg_fallback = {
 				format = function(self, ctx, lines, callback)
