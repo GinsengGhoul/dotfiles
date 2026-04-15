@@ -65,6 +65,8 @@ end
 -- make dd actually delete xx will cut instead
 keymap.set("n", "dd", '"_dd', { noremap = true })
 keymap.set("n", "xx", "dd", { noremap = true })
+vim.keymap.set("n", "<Del>", '"_x', { noremap = true, silent = true })
+
 -- go to end of line using ff and ;;
 keymap.set("n", ";;", "$", { noremap = true })
 keymap.set("n", "ff", "0", { noremap = true })
