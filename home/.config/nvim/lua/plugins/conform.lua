@@ -1,6 +1,6 @@
 local function hasExt()
-  local name = vim.api.nvim_buf_get_name(0)
-  return name:match("%.[^./\\]+$") ~= nil
+	local name = vim.api.nvim_buf_get_name(0)
+	return name:match("%.[^./\\]+$") ~= nil
 end
 
 return {
@@ -16,7 +16,6 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			python = { "autopep8" },
-			javascript = { "prettierd", "prettier", stop_after_first = true },
 			c = { "clang-format" },
 			cpp = { "clang-format" },
 			java = { "clang-format" },
@@ -33,12 +32,23 @@ return {
 			lsp_format = "fallback",
 		},
 		-- Set up format-on-save
-		format_on_save = { timeout_ms = 500 },
+		format_on_save = function(bufnr)
+			-- Only format if the file has an extension
+			if vim.api.nvim_buf_get_name(bufnr):match("%.[^./\\]+$") then
+				return { timeout_ms = 500 }
+			end
+		end,
 		-- Customize formatters
 		formatters = {
+			autopep8 = {
+				append_args = {
+					"--max-line-length",
+					"1023",
+				},
+			},
 			clang_format = {
-				prepend_args = {
-					"-style={BasedOnStyle: Mozilla, ColumnLimit: 0}",
+				append_args = {
+					"-style='{ BasedOnStyle: Mozilla, ColumnLimit: 100 }'",
 				},
 			},
 			shfmt = {
@@ -49,15 +59,21 @@ return {
 					-- Save cursor position
 					local view = vim.fn.winsaveview()
 
+					local start_line = ctx.range and ctx.range.start[1] or 1
+					local end_line = ctx.range and ctx.range["end"][1] or vim.api.nvim_buf_line_count(ctx.buf)
+
 					-- Apply formatting using Neovim's built-in formatexpr
-					vim.api.nvim_buf_set_lines(ctx.buf, 0, -1, false, lines)
-					vim.cmd("normal! gg=G")
+					vim.api.nvim_buf_call(ctx.buf, function()
+						vim.cmd(string.format("silent! %d,%d=", start_line, end_line))
+						-- Restore cursor position
+						vim.fn.winrestview(view)
+					end)
+
 					local formatted_lines = vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)
-
-					-- Restore cursor position
-					vim.fn.winrestview(view)
-
 					callback(nil, formatted_lines)
+				end,
+				condition = function(self, ctx)
+					return true
 				end,
 			},
 		},
