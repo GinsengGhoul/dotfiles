@@ -46,9 +46,10 @@ return {
 					"1023",
 				},
 			},
-			clang_format = {
-				append_args = {
-					"-style='{ BasedOnStyle: Mozilla, ColumnLimit: 100 }'",
+			["clang-format"] = {
+				-- We use prepend to override any local .clang-format files
+				prepend_args = {
+					"--style={BasedOnStyle: LLVM, ColumnLimit: 100, AllowShortIfStatementsOnASingleLine: Always, BreakBeforeBraces: Custom, BraceWrapping: { AfterControlStatement: false, AfterFunction: false, AfterStruct: false, BeforeElse: true }, IndentPPDirectives: BeforeHash}",
 				},
 			},
 			shfmt = {
