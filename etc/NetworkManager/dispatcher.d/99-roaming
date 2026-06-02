@@ -1,0 +1,33 @@
+#!/bin/sh
+
+INTERFACE=$1
+ACTION=$2
+
+if [ -d "/sys/class/net/$INTERFACE/wireless" ] && [ "$ACTION" = "up" ]; then
+  # wait for connection to stabilize
+  sleep 5
+
+  INT_PATH=$(gdbus call --system --dest fi.w1.wpa_supplicant1 \
+    --object-path /fi/w1/wpa_supplicant1 \
+    --method fi.w1.wpa_supplicant1.GetInterface "$INTERFACE" | cut -d"'" -f2)
+
+  # get network path
+  if [ -z "$INT_PATH" ]; then
+    NET_PATH=$(gdbus call --system --dest fi.w1.wpa_supplicant1 \
+      --object-path "$INT_PATH" \
+      --method org.freedesktop.DBus.Properties.Get \
+      "fi.w1.wpa_supplicant1.Interface" "CurrentNetwork" | cut -d"'" -f2)
+  fi
+
+  if [ -n "$NET_PATH" ]; then
+    gdbus call --system --dest fi.w1.wpa_supplicant1 \
+      --object-path "$NET_PATH" \
+      --method org.freedesktop.DBus.Properties.Set \
+      "fi.w1.wpa_supplicant1.Network" "Properties" \
+      "<{'bgscan': <'simple:30:-80:300'>}>" > /dev/null
+
+    logger "NM-dispatcher: bgscan set to -80dBm for $INTERFACE"
+  else
+    logger "NM-dispatcher: Timed out waiting for network path on $INTERFACE"
+  fi
+fi
