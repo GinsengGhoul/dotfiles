@@ -7,6 +7,7 @@ alias diff="diff --color=auto"
 alias sudo="sudo -E"
 
 alias ssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+alias scp="scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -25,7 +26,11 @@ HISTSIZE=1000
 SAVEHIST=1000
 bindkey -e
 bindkey "^[[H" beginning-of-line
+bindkey "^[OH" beginning-of-line
+bindkey "^[[1~" beginning-of-line
 bindkey "^[[F" end-of-line
+bindkey "^[OF" end-of-line
+bindkey "^[[4~" end-of-line
 bindkey "^[[3~" delete-char
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
