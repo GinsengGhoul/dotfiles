@@ -8,7 +8,7 @@ return {
       branch = "coq",
       enabled = true,
       show = false,
-      build = ":COQdeps",
+      --build = ":COQdeps",
     },
 
     -- 9000+ Snippets
@@ -25,7 +25,6 @@ return {
   },
   init = function()
     vim.g.coq_settings = {
-        auto_start = 'shut-up', -- if you want to start COQ at startup
         -- Your COQ settings here
     }
   end,
