@@ -1,3 +1,6 @@
+# change timefmt to be closer to bash
+export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
+
 # enable color output
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
