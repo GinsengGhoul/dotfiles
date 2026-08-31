@@ -10,8 +10,8 @@ sleep 1
 /usr/libexec/xdg-desktop-portal-gtk &
 logger 'xdg-desktop-portal-gtk started'
 sleep 1
-/usr/libexec/xdg-desktop-portal-hyprland &
-logger 'xdg-desktop-portal-hyprland started'
+/usr/libexec/xdg-desktop-portal-wlr &
+logger 'xdg-desktop-portal-wlr started'
 sleep 2
 /usr/libexec/xdg-desktop-portal &
 logger 'xdg-desktop-portal started'

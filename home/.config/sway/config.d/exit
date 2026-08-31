@@ -1,0 +1,19 @@
+# Exit sway (logs you out of your Wayland session)
+mode "Exit" {
+    bindsym l exec swaymsg exit
+    bindsym n mode "default"; exec pkill -15 swaynag; exec $lock; exec loginctl suspend
+    bindsym r exec loginctl reboot
+    bindsym s exec loginctl poweroff
+    bindsym h mode "default"; exec pkill -15 swaynag; exec $lock; exec loginctl hibernate
+    bindsym e mode "default"; exec pkill -15 swaynag
+    bindsym Escape mode "default"; exec pkill -15 swaynag
+}
+
+bindsym $mod+Shift+e mode "Exit", exec swaynag \
+          -t warning \
+          -m 'SESSION EXIT OPTIONS' \
+          -B '[L]ogout' 	"swaymsg exit" \
+          -B '[N]ap' 	"$lock && loginctl suspend" \
+          -B '[R]estart'	"reboot" \
+          -B '[S]hutdown'	"poweroff" \
+          -B '[H]ibernate'	"$lock && loginctl hibernate"

@@ -1,0 +1,24 @@
+#
+#   Autostart
+#
+
+# startup polkit, xdg, daemons
+exec /usr/bin/dbus-update-activation-environment --all
+exec /usr/libexec/polkit-gnome-authentication-agent-1
+exec "${HOME}/.config/sway/scripts/startXDG.sh"
+exec "${HOME}/.config/sway/scripts/setDefaultApps.sh"
+exec gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+
+exec "${HOME}/.config/sway/scripts/killstart.sh" pipewire
+exec "${HOME}/.config/sway/scripts/idle.sh" on
+exec_always "${HOME}/.config/sway/scripts/killstart.sh" mako
+exec nm-applet --inidcator
+exec blueman-applet
+exec copyq --start-server
+
+exec_always "${HOME}/.config/sway/scripts/killstart.sh" waybar
+exec "${HOME}/.config/sway/scripts/brightnessctl.sh" restore
+
+exec signal-desktop --start-in-tray
+# exec easyeffects --gapplication-service
+exec xdman -m

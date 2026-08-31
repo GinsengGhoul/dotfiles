@@ -1,0 +1,15 @@
+#
+#   Input configuration
+#
+# Read `man 5 sway-input` for more information about this section.
+
+input type:touchpad {
+	tap enabled
+	middle_emulation enabled
+	drag_lock disable
+}
+
+input "2:7:SynPS/2_Synaptics_TouchPad" {
+	tap enabled
+	scroll_method edge
+}

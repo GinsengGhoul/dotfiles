@@ -6,8 +6,8 @@
     "spacing": 10, // Gaps between modules (4px)
                    // Choose the order of the modules
     "modules-left": [
-      "hyprland/workspaces",
-    "hyprland/submap",
+      "sway/workspaces",
+      "sway/mode",
     ],
     "modules-right": [
     "custom/keyboard",
@@ -32,12 +32,12 @@
         "unlocked": ""
       }
     },
-    "hyprland/workspaces": {
+    "sway/workspaces": {
      "format": "{icon}",
-     "on-scroll-up": "hyprctl dispatch workspace e-1",
-     "on-scroll-down": "hyprctl dispatch workspace e+1"
+     "on-scroll-up": "~/.config/sway/scripts/moveWorkspace.sh prev",
+     "on-scroll-down": "~/.config/sway/scripts/moveWorkspace.sh next"
 	},
-    "hyprland/submap": {
+    "sway/submap": {
       "format": "<span style=\"italic\">{}</span>",
       },
     "idle_inhibitor": {
@@ -56,7 +56,7 @@
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
       "format": "{:%a %b %e, %I:%M:%S%p}",
       "interval": 1,
-      "on-click" : "gnome-calendar"
+      //"on-click" : "gnome-calendar"
     },
     "battery": {
       "states": {
@@ -72,8 +72,8 @@
       // "format-good": "", // An empty format will hide the module
       // "format-full": "",
       "format-icons": ["󰁺", "󰁼", "󰁾", "󰂁", "󰁹"],
-      "on-scroll-up": "${HOME}/.config/hypr/scripts/brightnessctl.sh up 28",
-      "on-scroll-down": "${HOME}/.config/hypr/scripts/brightnessctl.sh down 25",
+      "on-scroll-up": "${HOME}/.config/sway/scripts/brightnessctl.sh up 28",
+      "on-scroll-down": "${HOME}/.config/sway/scripts/brightnessctl.sh down 25",
     },
     "pulseaudio": {
       "scroll-step": 2, // %, can be a float
