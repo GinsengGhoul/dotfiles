@@ -1,11 +1,6 @@
-local function hasExt()
-	local name = vim.api.nvim_buf_get_name(0)
-	return name:match("%.[^./\\]+$") ~= nil
-end
-
 return {
 	"stevearc/conform.nvim",
-	enabled = hasExt(),
+	enabled = true,
 	event = { "BufWritePre" },
 	cmd = { "ConformInfo" },
 	-- This will provide type hinting with LuaLS
